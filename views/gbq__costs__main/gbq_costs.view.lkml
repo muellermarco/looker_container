@@ -7,12 +7,6 @@ view: gbq_costs {
         sql: ${TABLE}."AtScale_User";;
     }
 
-    dimension: atscale_query_id__hierarchy_atscale_query_id {
-        label: "AtScale Query ID"
-        type: string
-        sql: ${TABLE}."atscale_query_id";;
-    }
-
     dimension: hour {
         label: "hour"
         type: number
@@ -29,6 +23,29 @@ view: gbq_costs {
         label: "second"
         type: number
         sql: ${TABLE}."second";;
+    }
+
+    dimension: atscale_queries_hierarchy_atscale_query {
+        label: " AtScale Query"
+        group_label: "AtScale Queries Hierarchy"
+        type: string
+        sql: ${TABLE}."atscale_query";;
+    }
+
+    dimension: atscale_queries_hierarchy_main_catalogId {
+        label: "   Catalog"
+        group_label: "AtScale Queries Hierarchy"
+        type: string
+        sql: ${TABLE}."main_catalogId";;
+        drill_fields: [atscale_queries_hierarchy_main_modelId]
+    }
+
+    dimension: atscale_queries_hierarchy_main_modelId {
+        label: "  main_modelId"
+        group_label: "AtScale Queries Hierarchy"
+        type: string
+        sql: ${TABLE}."main_modelId";;
+        drill_fields: [atscale_queries_hierarchy_atscale_query]
     }
 
     dimension: date_week_hierarchy_Year1 {
