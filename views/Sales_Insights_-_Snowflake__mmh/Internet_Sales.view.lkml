@@ -895,6 +895,12 @@ view: Internet_Sales {
         sql: ${TABLE}."Germany only";;
     }
 
+    measure: Test_NULL {
+        label: "Test NULL"
+        type: count_distinct
+        sql: ${TABLE}."Test NULL";;
+    }
+
     measure: customercount1 {
         label: "Customer Count"
         group_label: "Customer Metrics"
