@@ -897,7 +897,7 @@ view: Internet_Sales {
 
     measure: Test_NULL {
         label: "Test NULL"
-        type: count_distinct
+        type: average
         sql: ${TABLE}."Test NULL";;
     }
 
