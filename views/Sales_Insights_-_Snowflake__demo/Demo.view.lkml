@@ -1,137 +1,118 @@
 view: Demo {
     label: "Demo"
     sql_table_name: "Sales Insights - Snowflake_demo"."Demo";;
-    dimension: Day_Date {
-        label: "Day Date"
-        group_label: "Date Attributes"
-        type: date_time
-        sql: ${TABLE}."Day_Date";;
-    }
-
-    dimension: W_Day_Date {
-        label: "W Day Date"
-        group_label: "Date Attributes"
-        type: date_time
-        sql: ${TABLE}."W_Day_Date";;
-    }
-
-    dimension: d_day_of_month {
-        label: "Day Of Month"
-        group_label: "Date Attributes"
-        type: number
-        sql: ${TABLE}."d_day_of_month";;
-    }
-
-    dimension: d_day_of_week_name {
-        label: "Day Of Week Name"
+    dimension: d_Custom_Day_Of_Month {
+        label: "Custom Day Of Month"
         group_label: "Date Attributes"
         type: string
-        sql: ${TABLE}."d_day_of_week_name";;
+        sql: ${TABLE}."d_Custom_Day_Of_Month";;
     }
 
-    dimension: d_day_of_week_number {
-        label: "Day Of Week Number"
-        group_label: "Date Attributes"
-        type: number
-        sql: ${TABLE}."d_day_of_week_number";;
-    }
-
-    dimension: d_month_of_year {
-        label: "Month Of Year"
-        group_label: "Date Attributes"
-        type: number
-        sql: ${TABLE}."d_month_of_year";;
-    }
-
-    dimension: d_quarter_number {
-        label: "Quarter Number"
-        group_label: "Date Attributes"
-        type: number
-        sql: ${TABLE}."d_quarter_number";;
-    }
-
-    dimension: d_week_of_year {
-        label: "Week Of Year"
-        group_label: "Date Attributes"
-        type: number
-        sql: ${TABLE}."d_week_of_year";;
-    }
-
-    dimension: w_day_of_week_name {
-        label: "W Day Of Week Name"
+    dimension: d_Custom_Day_Of_Week {
+        label: "Custom Day Of Week"
         group_label: "Date Attributes"
         type: string
-        sql: ${TABLE}."w_day_of_week_name";;
+        sql: ${TABLE}."d_Custom_Day_Of_Week";;
     }
 
-    dimension: w_day_of_week_number {
-        label: "W Day Of Week Number"
-        group_label: "Date Attributes"
-        type: number
-        sql: ${TABLE}."w_day_of_week_number";;
-    }
-
-    dimension: year {
-        label: "Year"
+    dimension: d_Custom_Day_Of_Year {
+        label: "Custom Day Of Year"
         group_label: "Date Attributes"
         type: string
-        sql: ${TABLE}."year";;
+        sql: ${TABLE}."d_Custom_Day_Of_Year";;
     }
 
-    dimension: Date_Month_Hierarchy_DayMonth {
-        label: " Day"
-        description: "Day level of standard calendar Month Hierarchy"
-        group_label: "Date Attributes.Date Month Hierarchy"
+    dimension: d_Custom_Month_Name {
+        label: "Custom Month Name"
+        group_label: "Date Attributes"
         type: string
-        sql: ${TABLE}."DayMonth";;
+        sql: ${TABLE}."d_Custom_Month_Name";;
     }
 
-    dimension: Date_Month_Hierarchy_Month1 {
-        label: "  Month"
-        group_label: "Date Attributes.Date Month Hierarchy"
+    dimension: d_Custom_Month_Of_Quarter {
+        label: "Custom Month Of Quarter"
+        group_label: "Date Attributes"
         type: string
-        sql: ${TABLE}."Month1";;
-        drill_fields: [Date_Month_Hierarchy_DayMonth]
+        sql: ${TABLE}."d_Custom_Month_Of_Quarter";;
     }
 
-    dimension: Date_Month_Hierarchy_YearMonth {
-        label: "   Year"
-        description: "Year level of the Standard Calendar Month Hierarchy."
-        group_label: "Date Attributes.Date Month Hierarchy"
+    dimension: d_Custom_Month_Of_Year {
+        label: "Custom Month Of Year"
+        group_label: "Date Attributes"
         type: string
-        sql: ${TABLE}."YearMonth";;
-        drill_fields: [Date_Month_Hierarchy_Month1]
+        sql: ${TABLE}."d_Custom_Month_Of_Year";;
     }
 
-    dimension: Date_Week_Hierarchy_DayMonth {
-        label: " Day"
-        description: "Day level of standard calendar Month Hierarchy"
-        group_label: "Date Attributes.Date Week Hierarchy"
+    dimension: d_Custom_Quarter_Of_Year {
+        label: "Custom Quarter Of Year"
+        group_label: "Date Attributes"
         type: string
-        sql: ${TABLE}."DayMonth";;
+        sql: ${TABLE}."d_Custom_Quarter_Of_Year";;
     }
 
-    dimension: Date_Week_Hierarchy_Week {
-        label: "  Week"
-        group_label: "Date Attributes.Date Week Hierarchy"
+    dimension: d_Custom_Week_Of_Month {
+        label: "Custom Week Of Month"
+        group_label: "Date Attributes"
         type: string
-        sql: ${TABLE}."Week";;
-        drill_fields: [Date_Week_Hierarchy_DayMonth]
+        sql: ${TABLE}."d_Custom_Week_Of_Month";;
     }
 
-    dimension: Date_Week_Hierarchy_YearWeek {
-        label: "   Year"
-        group_label: "Date Attributes.Date Week Hierarchy"
+    dimension: d_Custom_Week_Of_Year {
+        label: "Custom Week Of Year"
+        group_label: "Date Attributes"
         type: string
-        sql: ${TABLE}."YearWeek";;
-        drill_fields: [Date_Week_Hierarchy_Week]
+        sql: ${TABLE}."d_Custom_Week_Of_Year";;
+    }
+
+    dimension: CustomPP445_customday {
+        label: " Custom Day"
+        description: "A 445 calendar with custom parallel period keys defined for each level.  The underlying data matches the results of the Retail445 hierarchy because the data table contains the standard key assignments generated by the default ParallelPeriod logic.  A real custom ParallelPeriod hierarchy would have different parallel period key assignments to satisfy the rpt business's rpt comparison requirements."
+        group_label: "Date Attributes.CustomPP445"
+        type: date
+        sql: ${TABLE}."customday";;
+    }
+
+    dimension: CustomPP445_custommonth {
+        label: "   Custom Month"
+        description: "Same as [Retail445].[rpt Month] but has a custom parallel period key."
+        group_label: "Date Attributes.CustomPP445"
+        type: string
+        sql: ${TABLE}."custommonth";;
+        drill_fields: [CustomPP445_customweek]
+    }
+
+    dimension: CustomPP445_customquarter {
+        label: "    Custom Quarter"
+        description: "Same as [Retail445].[rpt Quarter] but has a custom parallel period key."
+        group_label: "Date Attributes.CustomPP445"
+        type: string
+        sql: ${TABLE}."customquarter";;
+        drill_fields: [CustomPP445_custommonth]
+    }
+
+    dimension: CustomPP445_customweek {
+        label: "  Custom Week"
+        description: "Same as [Retail445].[rpt Week] but has a custom parallel period key."
+        group_label: "Date Attributes.CustomPP445"
+        type: string
+        sql: ${TABLE}."customweek";;
+        drill_fields: [CustomPP445_customday]
+    }
+
+    dimension: CustomPP445_customyear {
+        label: "     Custom Year"
+        description: "Same as [Retail445].[rpt Year] but has a custom parallel period key."
+        group_label: "Date Attributes.CustomPP445"
+        type: string
+        sql: ${TABLE}."customyear";;
+        drill_fields: [CustomPP445_customquarter]
     }
 
 
-    measure: m_FACTINTERNETSALESORIG_salesamount_sum {
-        label: "Sales Amount"
+    measure: m_FACTINTERNETSALESORIG_orderquantity_sum {
+        label: "Order Quantity"
         type: sum
-        sql: ${TABLE}."m_FACTINTERNETSALESORIG_salesamount_sum";;
+        sql: ${TABLE}."m_FACTINTERNETSALESORIG_orderquantity_sum";;
     }
 
 }
